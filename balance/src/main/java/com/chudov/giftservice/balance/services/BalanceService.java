@@ -1,12 +1,14 @@
 package com.chudov.giftservice.balance.services;
 
-import com.chudov.giftservice.balance.dto.BalanceDTO;
+import com.chudov.giftservice.balance.dto.Balance;
 
 import java.util.List;
 
 public interface BalanceService {
 
-    BalanceDTO findById(String clientID);
+    Balance findById(String clientID);
 
-    List<BalanceDTO> findAll();
+    List<Balance> findAll();
+
+    void save(Balance balance);
 }

@@ -1,6 +1,7 @@
 package com.chudov.giftservice.giftcard.service;
 
 import com.chudov.giftservice.giftcard.client.BalanceClient;
+import com.chudov.giftservice.giftcard.entity.Balance;
 import com.chudov.giftservice.giftcard.entity.ClientGiftCard;
 import com.chudov.giftservice.giftcard.entity.GiftCard;
 import com.chudov.giftservice.giftcard.entity.GiftCardRequest;
@@ -23,8 +24,7 @@ public class GiftCardServiceImpl implements GiftCardService {
 
     @Override
     public void buyGifts(GiftCardRequest giftCardRequest) {
-//        Integer currentBalance = balanceClient.findById(giftCardRequest.getClientID()).getBalance();
-        int currentBalance = 100;
+        Integer currentBalance = balanceClient.findById(giftCardRequest.getClientID()).getBalance();
         int futureBalance = calculateFutureBalance(currentBalance, giftCardRequest.getGiftCards());
 
         if (futureBalance < 0) {
@@ -32,8 +32,7 @@ public class GiftCardServiceImpl implements GiftCardService {
         }
 
         updateGiftCards(giftCardRequest);
-//         balanceClient.updateById(giftCardRequest.getClientID(), futureBalance);
-
+        balanceClient.save(new Balance(giftCardRequest.getClientID(), futureBalance));
     }
 
     private int calculateFutureBalance(int currentBalance, List<GiftCard> giftCards) {

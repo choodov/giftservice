@@ -10,7 +10,7 @@ import org.springframework.data.redis.core.RedisHash;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BalanceDTO {
+public class Balance {
 
     @Id
     private String clientID;

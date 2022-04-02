@@ -1,11 +1,11 @@
 package com.chudov.giftservice.balance.repo;
 
-import com.chudov.giftservice.balance.dto.BalanceDTO;
+import com.chudov.giftservice.balance.dto.Balance;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BalanceRepository extends CrudRepository<BalanceDTO, String> {
+public interface BalanceRepository extends CrudRepository<Balance, String> {
 
-    BalanceDTO findByClientID(String clientID);
+    Balance findByClientID(String clientID);
 }

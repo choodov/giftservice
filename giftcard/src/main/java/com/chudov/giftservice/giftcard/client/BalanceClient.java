@@ -2,22 +2,22 @@ package com.chudov.giftservice.giftcard.client;
 
 import com.chudov.giftservice.giftcard.entity.Balance;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@Component
-@FeignClient("balance")
+@FeignClient(value = "balance", url = "http://localhost:8090/balance/")
 public interface BalanceClient {
 
-    @GetMapping("/balance")
+    @GetMapping
     List<Balance> findAll();
 
-    @GetMapping("/balance/{id}")
-    Balance findById(String clientID);
+    @GetMapping("/{id}")
+    Balance findById(@PathVariable("id") String clientID);
 
-//    @PostMapping("/balance/{id}")
-//    void updateById(String clientID, int futureBalance);
+    @PostMapping
+    void save(@RequestBody Balance balance);
 }

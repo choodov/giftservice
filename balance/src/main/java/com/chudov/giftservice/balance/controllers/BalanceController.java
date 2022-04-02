@@ -1,12 +1,9 @@
 package com.chudov.giftservice.balance.controllers;
 
-import com.chudov.giftservice.balance.dto.BalanceDTO;
+import com.chudov.giftservice.balance.dto.Balance;
 import com.chudov.giftservice.balance.services.BalanceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,12 +15,17 @@ public class BalanceController {
     private BalanceService service;
 
     @GetMapping
-    public List<BalanceDTO> findAll() {
+    public List<Balance> findAll() {
         return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public BalanceDTO findById(@PathVariable("id") String clientID) {
+    public Balance findById(@PathVariable("id") String clientID) {
         return service.findById(clientID);
+    }
+
+    @PostMapping()
+    public void save(@RequestBody Balance balance) {
+        service.save(balance);
     }
 }
