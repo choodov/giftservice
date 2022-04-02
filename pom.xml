@@ -14,5 +14,6 @@
         <module>balance</module>
         <module>discovery</module>
         <module>config</module>
+        <module>giftcard</module>
     </modules>
 </project>
