@@ -13,5 +13,6 @@
     <modules>
         <module>balance</module>
         <module>discovery</module>
+        <module>config</module>
     </modules>
 </project>
