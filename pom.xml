@@ -12,5 +12,6 @@
 
     <modules>
         <module>balance</module>
+        <module>discovery</module>
     </modules>
 </project>
