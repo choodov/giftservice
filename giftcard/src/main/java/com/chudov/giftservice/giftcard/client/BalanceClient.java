@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@FeignClient(value = "balance", url = "http://localhost:8090/balance/")
+@FeignClient(value = "balance", url = "http://balance:8090/balance/")
 public interface BalanceClient {
 
     @GetMapping

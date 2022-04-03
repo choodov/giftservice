@@ -13,7 +13,7 @@ public class MongoConfig {
 
     @Bean
     public MongoClient mongo() {
-        ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/giftcards");
+        ConnectionString connectionString = new ConnectionString("mongodb://mongo:27017/giftcards");
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
                 .build();

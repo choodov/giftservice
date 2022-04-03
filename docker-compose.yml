@@ -1,0 +1,61 @@
+version: '3'
+services:
+  discovery:
+    container_name: discovery
+    image: discovery
+    hostname: discovery
+    build: ./discovery
+    restart: always
+    ports:
+      - 8761:8761
+  configserver:
+    container_name: configserver
+    image: configserver
+    hostname: configserver
+    build: ./config
+    restart: always
+    depends_on:
+      - discovery
+    ports:
+      - 8888:8888
+  redis:
+    container_name: redis
+    image: redis
+    build: ./config-redis
+    hostname: redis
+    restart: always
+    ports:
+      - 6379:6379
+  balance:
+    container_name: balance
+    image: balance
+    hostname: balance
+    build: ./balance
+    restart: always
+    volumes:
+      - ~/docker/redis:/redis-service/logs
+    depends_on:
+      - discovery
+      - configserver
+      - redis
+    ports:
+      - 8090:8090
+  mongo:
+    container_name: mongo
+    hostname: mongo
+    image: mongo:4.4.2
+    restart: always
+    ports:
+      - 27017:27017
+  giftcard:
+    container_name: giftcard
+    image: giftcard
+    hostname: giftcard
+    build: ./giftcard
+    restart: always
+    depends_on:
+      - discovery
+      - configserver
+      - mongo
+    ports:
+      - 8091:8091
